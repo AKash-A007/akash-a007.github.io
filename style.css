@@ -1,0 +1,173 @@
+:root {
+  --bg: #0d1117;
+  --text: #c9d1d9;
+  --card-bg: #161b22;
+  --accent: #58a6ff;
+  --shadow: rgba(0, 0, 0, 0.3);
+}
+
+.light-mode {
+  --bg: #f7f7f7;
+  --text: #111;
+  --card-bg: #fff;
+  --accent: #0077ff;
+  --shadow: rgba(0, 0, 0, 0.1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  transition: background 0.3s, color 0.3s;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 10%;
+  background: var(--card-bg);
+  box-shadow: 0 2px 8px var(--shadow);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.navbar .logo {
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
+.navbar .logo span {
+  color: var(--accent);
+}
+
+.navbar nav a {
+  margin: 0 1rem;
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.navbar nav a:hover {
+  color: var(--accent);
+}
+
+#theme-toggle {
+  border: none;
+  background: transparent;
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+
+/* Hero */
+.hero {
+  text-align: center;
+  padding: 6rem 2rem;
+}
+
+.hero h2 {
+  font-size: 2.5rem;
+}
+
+.hero h2 span {
+  color: var(--accent);
+}
+
+.hero p {
+  margin-top: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.btn {
+  display: inline-block;
+  margin-top: 1.5rem;
+  background: var(--accent);
+  color: white;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  opacity: 0.8;
+}
+
+/* About */
+.about, .projects, .contact {
+  padding: 4rem 10%;
+  text-align: center;
+}
+
+.about p {
+  max-width: 700px;
+  margin: 1rem auto;
+}
+
+/* Projects */
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.card {
+  background: var(--card-bg);
+  border-radius: 15px;
+  box-shadow: 0 4px 10px var(--shadow);
+  padding: 1.5rem;
+  text-align: left;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px var(--shadow);
+}
+
+.card img {
+  width: 100%;
+  border-radius: 10px;
+  height: 150px;
+  object-fit: contain;
+  background: white;
+  padding: 10px;
+}
+
+.card h3 {
+  margin-top: 1rem;
+  color: var(--accent);
+}
+
+.card a {
+  display: inline-block;
+  margin-top: 0.5rem;
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+/* Contact */
+.contact p {
+  margin-bottom: 1rem;
+}
+
+/* Footer */
+footer {
+  background: var(--card-bg);
+  text-align: center;
+  padding: 1.2rem;
+  font-size: 0.9rem;
+  box-shadow: 0 -2px 8px var(--shadow);
+}
