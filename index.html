@@ -3,74 +3,825 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Akash A | Portfolio</title>
-  <link rel="stylesheet" href="style.css" />
-  <script defer src="script.js"></script>
+  <title>Akash A | AI Engineer & OpenBMC Contributor</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0d1117;
+      --text: #c9d1d9;
+      --card-bg: #161b22;
+      --accent: #58a6ff;
+      --accent-hover: #79b8ff;
+      --shadow: rgba(0, 0, 0, 0.3);
+      --gradient: linear-gradient(135deg, #58a6ff 0%, #1f6feb 100%);
+      --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .light-mode {
+      --bg: #f7f9fc;
+      --text: #2d3748;
+      --card-bg: #ffffff;
+      --accent: #0077ff;
+      --accent-hover: #0056cc;
+      --shadow: rgba(0, 0, 0, 0.08);
+      --gradient: linear-gradient(135deg, #0077ff 0%, #0056cc 100%);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+      transition: var(--transition);
+    }
+
+    /* Loading Animation */
+    .loading-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--bg);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+    }
+
+    .loading-screen.hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .loader {
+      width: 50px;
+      height: 50px;
+      border: 3px solid rgba(88, 166, 255, 0.3);
+      border-radius: 50%;
+      border-top-color: var(--accent);
+      animation: spin 1s ease-in-out infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Navbar */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 5%;
+      background: var(--card-bg);
+      box-shadow: 0 4px 20px var(--shadow);
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      backdrop-filter: blur(10px);
+    }
+
+    .navbar .logo {
+      font-weight: 700;
+      font-size: 1.8rem;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      transition: var(--transition);
+    }
+
+    .navbar .logo:hover {
+      transform: scale(1.05);
+    }
+
+    .navbar nav {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .navbar nav a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 500;
+      position: relative;
+      padding: 0.5rem 0;
+      transition: var(--transition);
+    }
+
+    .navbar nav a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent);
+      transition: width 0.3s ease;
+    }
+
+    .navbar nav a:hover {
+      color: var(--accent);
+    }
+
+    .navbar nav a:hover::after {
+      width: 100%;
+    }
+
+    #theme-toggle {
+      border: none;
+      background: transparent;
+      font-size: 1.3rem;
+      cursor: pointer;
+      transition: var(--transition);
+      padding: 0.5rem;
+      border-radius: 50%;
+    }
+
+    #theme-toggle:hover {
+      background: rgba(88, 166, 255, 0.1);
+      transform: rotate(15deg);
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: var(--text);
+      cursor: pointer;
+    }
+
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 0 5%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 30% 30%, rgba(88, 166, 255, 0.1) 0%, transparent 50%);
+      z-index: -1;
+    }
+
+    .hero-content {
+      max-width: 800px;
+      z-index: 1;
+    }
+
+    .profile-image {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid var(--accent);
+      box-shadow: 0 8px 30px rgba(88, 166, 255, 0.3);
+      margin-bottom: 2rem;
+      transition: var(--transition);
+    }
+
+    .profile-image:hover {
+      transform: scale(1.05);
+      box-shadow: 0 12px 40px rgba(88, 166, 255, 0.4);
+    }
+
+    .hero h2 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      opacity: 0;
+      animation: fadeInUp 1s ease 0.5s forwards;
+    }
+
+    .hero h2 span {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      font-size: 1.3rem;
+      margin-bottom: 2rem;
+      opacity: 0;
+      animation: fadeInUp 1s ease 0.8s forwards;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeInUp 1s ease 1.1s forwards;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--gradient);
+      color: white;
+      padding: 0.9rem 1.8rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: var(--transition);
+      box-shadow: 0 4px 15px rgba(88, 166, 255, 0.3);
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(88, 166, 255, 0.4);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--accent);
+      color: var(--accent);
+    }
+
+    .btn-outline:hover {
+      background: var(--accent);
+      color: white;
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0) translateX(-50%);
+      }
+      40% {
+        transform: translateY(-10px) translateX(-50%);
+      }
+      60% {
+        transform: translateY(-5px) translateX(-50%);
+      }
+    }
+
+    /* Sections */
+    section {
+      padding: 6rem 5%;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 3rem;
+      position: relative;
+    }
+
+    .section-title h2 {
+      font-size: 2.5rem;
+      display: inline-block;
+    }
+
+    .section-title h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: var(--gradient);
+      border-radius: 2px;
+    }
+
+    /* About */
+    .about {
+      background: var(--card-bg);
+      border-radius: 20px;
+      margin: 0 5%;
+      box-shadow: 0 10px 30px var(--shadow);
+    }
+
+    .about-content {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .about p {
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+    }
+
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .skill-tag {
+      background: rgba(88, 166, 255, 0.1);
+      color: var(--accent);
+      padding: 0.5rem 1.2rem;
+      border-radius: 50px;
+      font-weight: 500;
+      transition: var(--transition);
+    }
+
+    .skill-tag:hover {
+      background: var(--accent);
+      color: white;
+      transform: translateY(-3px);
+    }
+
+    /* Projects */
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2.5rem;
+      margin-top: 2rem;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 15px;
+      box-shadow: 0 10px 30px var(--shadow);
+      padding: 2rem;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: var(--gradient);
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px var(--shadow);
+    }
+
+    .card-img {
+      width: 100%;
+      height: 200px;
+      border-radius: 10px;
+      object-fit: contain;
+      background: white;
+      padding: 15px;
+      margin-bottom: 1.5rem;
+    }
+
+    .card h3 {
+      margin-bottom: 1rem;
+      color: var(--accent);
+    }
+
+    .card p {
+      margin-bottom: 1.5rem;
+      flex-grow: 1;
+    }
+
+    .card-links {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .card-links a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+      transition: var(--transition);
+    }
+
+    .card-links a:hover {
+      color: var(--accent-hover);
+      transform: translateX(5px);
+    }
+
+    /* Contact */
+    .contact {
+      text-align: center;
+      background: var(--card-bg);
+      border-radius: 20px;
+      margin: 0 5%;
+      box-shadow: 0 10px 30px var(--shadow);
+    }
+
+    .contact p {
+      max-width: 600px;
+      margin: 0 auto 2rem;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .social-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: rgba(88, 166, 255, 0.1);
+      color: var(--accent);
+      font-size: 1.3rem;
+      transition: var(--transition);
+    }
+
+    .social-link:hover {
+      background: var(--accent);
+      color: white;
+      transform: translateY(-5px);
+    }
+
+    /* Footer */
+    footer {
+      background: var(--card-bg);
+      text-align: center;
+      padding: 2rem;
+      margin-top: 4rem;
+      box-shadow: 0 -5px 20px var(--shadow);
+    }
+
+    /* Back to top button */
+    .back-to-top {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--gradient);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      box-shadow: 0 4px 15px rgba(88, 166, 255, 0.4);
+      opacity: 0;
+      visibility: hidden;
+      transition: var(--transition);
+      z-index: 100;
+    }
+
+    .back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .back-to-top:hover {
+      transform: translateY(-5px);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .navbar nav {
+        position: fixed;
+        top: 70px;
+        right: -100%;
+        width: 80%;
+        height: calc(100vh - 70px);
+        background: var(--card-bg);
+        flex-direction: column;
+        justify-content: flex-start;
+        padding-top: 2rem;
+        transition: right 0.3s ease;
+        box-shadow: -5px 0 15px var(--shadow);
+      }
+
+      .navbar nav.active {
+        right: 0;
+      }
+
+      .mobile-menu-btn {
+        display: block;
+      }
+
+      .hero h2 {
+        font-size: 2.2rem;
+      }
+
+      .hero p {
+        font-size: 1.1rem;
+      }
+
+      .hero-btns {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .btn {
+        width: 100%;
+        max-width: 250px;
+        justify-content: center;
+      }
+
+      .section-title h2 {
+        font-size: 2rem;
+      }
+
+      .project-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero h2 {
+        font-size: 1.8rem;
+      }
+
+      .section-title h2 {
+        font-size: 1.8rem;
+      }
+
+      .card {
+        padding: 1.5rem;
+      }
+    }
+  </style>
 </head>
 
 <body>
+  <!-- Loading Screen -->
+  <div class="loading-screen">
+    <div class="loader"></div>
+  </div>
+
+  <!-- Navigation -->
   <header class="navbar">
     <h1 class="logo">Akash<span>.</span></h1>
-    <nav>
+    <nav id="nav-menu">
       <a href="#about">About</a>
       <a href="#projects">Projects</a>
       <a href="#contact">Contact</a>
       <button id="theme-toggle">🌙</button>
     </nav>
+    <button class="mobile-menu-btn" id="mobile-menu-toggle">
+      <i class="fas fa-bars"></i>
+    </button>
   </header>
 
+  <!-- Hero Section -->
   <section class="hero">
-    <h2>Hi, I'm <span>Akash A</span> 👋</h2>
-    <p>AI Engineer • OpenBMC Contributor • ROS2 Developer</p>
-    <a href="resume.pdf" class="btn" download>💼 Download Resume</a>
+    <div class="hero-content">
+      <img src="photo.jpg" alt="Profile photo of Akash A" class="profile-image" />
+      <h2>Hi, I'm <span>Akash A</span> 👋</h2>
+      <p>AI Engineer • Open Source Contributor • Robotics Developer</p>
+      <div class="hero-btns">
+        <a href="resume.pdf" class="btn" download>
+          <i class="fas fa-download"></i> Download Resume
+        </a>
+        <a href="#contact" class="btn btn-outline">
+          <i class="fas fa-paper-plane"></i> Get In Touch
+        </a>
+      </div>
+    </div>
+    <div class="scroll-indicator">
+      <i class="fas fa-chevron-down"></i>
+    </div>
   </section>
 
+  <!-- About Section -->
   <section id="about" class="about">
-    <h2>About Me</h2>
-    <p>
-      I’m an AI Engineering student passionate about intelligent systems, robotics, and open-source.
-      My journey includes contributing to <strong>OpenBMC</strong> firmware, building swarm robotics with <strong>ROS 2</strong>,
-      and creating AI-powered learning tools for education in India.
-    </p>
-  </section>
-
-  <section id="projects" class="projects">
-    <h2>Featured Projects</h2>
-    <div class="project-grid">
-      <div class="card">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/7/76/OpenBMC_logo.png" alt="OpenBMC" />
-        <h3>OpenBMC Redfish RDE Support</h3>
-        <p>Contributed to Redfish Device Enablement and vendor integrations (HPE, DSP0218, DSP0248).</p>
-        <a href="https://github.com/openbmc" target="_blank">View Project</a>
-      </div>
-
-      <div class="card">
-        <img src="https://raw.githubusercontent.com/ros2/ros2/master/ros2_logo.svg" alt="ROS2" />
-        <h3>ROS2 Swarm Bot (ACO)</h3>
-        <p>Designed multi-agent swarm simulation with Ant Colony Optimization using Gazebo + ROS2.</p>
-        <a href="https://github.com/AKash-A007/ros2-swarmbot" target="_blank">View Project</a>
-      </div>
-
-      <div class="card">
-        <img src="https://cdn-icons-png.flaticon.com/512/4712/4712105.png" alt="AI Buddy" />
-        <h3>AI-Powered Learning Buddy</h3>
-        <p>Voice-based AI tutor for rural schools — multilingual, speech-enabled, offline-capable.</p>
-        <a href="https://github.com/AKash-A007/shiksha-ai" target="_blank">View Project</a>
+    <div class="section-title">
+      <h2>About Me</h2>
+    </div>
+    <div class="about-content">
+      <p>
+        I'm an AI Engineering student passionate about intelligent systems, robotics, and open-source.
+        I’ve worked on <strong>OpenBMC firmware</strong>, swarm robotics with <strong>ROS 2</strong>,
+        and AI-powered learning tools for schools.
+      </p>
+      <div class="skills">
+        <span class="skill-tag">Machine Learning</span>
+        <span class="skill-tag">Robotics</span>
+        <span class="skill-tag">OpenBMC</span>
+        <span class="skill-tag">ROS2</span>
+        <span class="skill-tag">Python</span>
+        <span class="skill-tag">C++</span>
+        <span class="skill-tag">Open Source</span>
       </div>
     </div>
   </section>
 
-  <section id="contact" class="contact">
-    <h2>Get In Touch</h2>
-    <p>Let’s collaborate on something meaningful. Drop me a message!</p>
-    <a href="mailto:akash@example.com" class="btn">📧 Contact Me</a>
+  <!-- Projects Section -->
+  <section id="projects" class="projects">
+    <div class="section-title">
+      <h2>Featured Projects</h2>
+    </div>
+    <div class="project-grid">
+      <div class="card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/8/83/OpenBMC_logo.png" alt="OpenBMC project" class="card-img" />
+        <h3>OpenBMC RDE Support</h3>
+        <p>Worked on Redfish Device Enablement and vendor integrations (HPE, DSP0218, DSP0248).</p>
+        <div class="card-links">
+          <a href="https://github.com/openbmc" rel="noopener noreferrer" target="_blank">
+            <i class="fab fa-github"></i> View Code
+          </a>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://raw.githubusercontent.com/ros2/ros2/master/ros2_logo.svg" alt="ROS2 project" class="card-img" />
+        <h3>ROS2 Swarm Bot (ACO)</h3>
+        <p>Multi-agent swarm simulation using Gazebo + ROS2 with Ant Colony Optimization.</p>
+        <div class="card-links">
+          <a href="https://github.com/AKash-A007/ros2-swarmbot" rel="noopener noreferrer" target="_blank">
+            <i class="fab fa-github"></i> View Code
+          </a>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="https://cdn-icons-png.flaticon.com/512/4712/4712105.png" alt="AI Tutor" class="card-img" />
+        <h3>AI Learning Buddy</h3>
+        <p>Voice-based multilingual AI tutor designed for rural education environments.</p>
+        <div class="card-links">
+          <a href="https://github.com/AKash-A007/shiksha-ai" rel="noopener noreferrer" target="_blank">
+            <i class="fab fa-github"></i> View Code
+          </a>
+        </div>
+      </div>
+    </div>
   </section>
 
+  <!-- Contact Section -->
+  <section id="contact" class="contact">
+    <div class="section-title">
+      <h2>Get In Touch</h2>
+    </div>
+    <p>Interested in collaborating or discussing ideas? Feel free to drop an email.</p>
+    <a href="mailto:akash@example.com" class="btn">
+      <i class="fas fa-envelope"></i> Contact Me
+    </a>
+    <div class="social-links">
+      <a href="https://github.com/AKash-A007" class="social-link" rel="noopener noreferrer" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+      <a href="https://www.linkedin.com/in/akash-a007/" class="social-link" rel="noopener noreferrer" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+    </div>
+  </section>
+
+  <!-- Footer -->
   <footer>
     <p>© 2025 Akash A | Built with ❤️ using GitHub Pages</p>
   </footer>
+
+  <!-- Back to Top -->
+  <a href="#" class="back-to-top" id="back-to-top"><i class="fas fa-arrow-up"></i></a>
+
+  <script>
+    // Loading screen
+    window.addEventListener('load', () => {
+      const loadingScreen = document.querySelector('.loading-screen');
+      setTimeout(() => {
+        loadingScreen.classList.add('hidden');
+      }, 1000);
+    });
+
+    // Theme toggle
+    const toggleBtn = document.getElementById("theme-toggle");
+    toggleBtn.addEventListener("click", () => {
+      document.body.classList.toggle("light-mode");
+      toggleBtn.textContent = document.body.classList.contains("light-mode") ? "🌞" : "🌙";
+      
+      // Save theme preference
+      localStorage.setItem('theme', document.body.classList.contains("light-mode") ? 'light' : 'dark');
+    });
+
+    // Load saved theme
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'light') {
+      document.body.classList.add('light-mode');
+      toggleBtn.textContent = "🌞";
+    }
+
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById('mobile-menu-toggle');
+    const navMenu = document.getElementById('nav-menu');
+    
+    mobileMenuBtn.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+      mobileMenuBtn.innerHTML = navMenu.classList.contains('active') 
+        ? '<i class="fas fa-times"></i>' 
+        : '<i class="fas fa-bars"></i>';
+    });
+
+    // Close mobile menu when clicking on a link
+    document.querySelectorAll('#nav-menu a').forEach(link => {
+      link.addEventListener('click', () => {
+        navMenu.classList.remove('active');
+        mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+      });
+    });
+
+    // Back to top button
+    const backToTopBtn = document.getElementById('back-to-top');
+    
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) {
+        backToTopBtn.classList.add('visible');
+      } else {
+        backToTopBtn.classList.remove('visible');
+      }
+    });
+
+    backToTopBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+
+    // Scroll animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, observerOptions);
+
+    // Observe elements for animation
+    document.querySelectorAll('.card, .about-content, .contact p').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(20px)';
+      el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      observer.observe(el);
+    });
+
+    // Add hover effect to project cards
+    document.querySelectorAll('.card').forEach(card => {
+      card.addEventListener('mouseenter', () => {
+        card.style.transform = 'translateY(-10px) scale(1.02)';
+      });
+      
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'translateY(0) scale(1)';
+      });
+    });
+  </script>
 </body>
 </html>
