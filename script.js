@@ -565,8 +565,8 @@ window.addEventListener('scroll', () => {
 function preloadImages() {
   const images = [
     'akash_photo_logo.jpg',
-    'https://www.openbmc.org/images/openbmc-logo.svg',
-    'https://raw.githubusercontent.com/ros2/ros2/master/ros2_logo.svg'
+    'image.png',
+    'ros2logo.png','OpenBMC_logo.png'
   ];
   
   images.forEach(src => {
