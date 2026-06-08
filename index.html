@@ -1,189 +1,175 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Akash A | AI Engineer & OpenBMC Contributor</title>
+  <title>Akash A — AI Engineer & Open Source Contributor</title>
+  <meta name="description" content="AI Engineer, ROS2 Developer & OpenBMC Contributor. Building intelligent systems and open-source tools." />
 
-  <!-- Fonts & Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
-    rel="stylesheet">
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
-  <!-- Stylesheets -->
-  <link rel="stylesheet" href="style.css">
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
-  <!-- Animated Cursor -->
-  <div class="cursor"></div>
-  <div class="cursor-follower"></div>
 
-  <!-- Loading Screen with Progress -->
-  <div class="loading-screen">
-    <div class="loader-content">
-      <div class="loader-logo">
-        <span class="loader-text">A</span>
-      </div>
-      <div class="loading-bar">
-        <div class="loading-progress"></div>
-      </div>
-      <p class="loading-text">Loading Experience...</p>
-    </div>
-  </div>
+  <!-- Custom Cursor -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursor-ring"></div>
 
   <!-- Navigation -->
-  <header class="navbar">
-    <h1 class="logo">
-      <span class="logo-bracket">&lt;</span>
-      Akash
-      <span class="logo-bracket">/&gt;</span>
-    </h1>
-    <nav id="nav-menu">
-      <a href="#about" class="nav-link">About</a>
-      <a href="#education" class="nav-link">Education</a>
-      <a href="#experience" class="nav-link">Experience</a>
-      <a href="#projects" class="nav-link">Projects</a>
-      <a href="#skills" class="nav-link">Skills</a>
-      <a href="#certifications" class="nav-link">Certifications</a>
-      <a href="#contact" class="nav-link">Contact</a>
-      <button id="theme-toggle" aria-label="Toggle theme">
-        <i class="fas fa-moon"></i>
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo" id="nav-logo-link">Akash A.</a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#about" class="nav-link" data-text="About">About</a></li>
+        <li><a href="#experience" class="nav-link" data-text="Experience">Experience</a></li>
+        <li><a href="#projects" class="nav-link" data-text="Projects">Projects</a></li>
+        <li><a href="#skills" class="nav-link" data-text="Skills">Skills</a></li>
+        <li><a href="#contact" class="nav-link" data-text="Contact">Contact</a></li>
+      </ul>
+      <a href="resume.pdf" download class="nav-resume-btn" id="nav-resume-btn">
+        <span>Resume</span>
+        <i class="fas fa-arrow-down"></i>
+      </a>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
       </button>
-    </nav>
-    <button class="mobile-menu-btn" id="mobile-menu-toggle" aria-label="Toggle menu">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
-  </header>
+    </div>
+  </nav>
 
-  <!-- Particle Background -->
-  <div id="particles-js"></div>
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="#about" class="mobile-link">About</a>
+    <a href="#experience" class="mobile-link">Experience</a>
+    <a href="#projects" class="mobile-link">Projects</a>
+    <a href="#skills" class="mobile-link">Skills</a>
+    <a href="#contact" class="mobile-link">Contact</a>
+    <a href="resume.pdf" download class="mobile-link mobile-resume">Download Resume</a>
+  </div>
 
-  <!-- Hero Section -->
-  <section class="hero">
+  <!-- ====== HERO ====== -->
+  <section class="hero" id="hero">
+    <!-- Interactive Black Hole Canvas -->
+    <canvas id="blackhole-canvas"></canvas>
+
     <div class="hero-content">
-      <div class="profile-container">
-        <img src="akash_photo_logo.jpg" alt="Akash A" class="profile-image">
-        <div class="profile-ring"></div>
-      </div>
-      <div class="hero-text">
-        <h2 class="hero-greeting">Hi, I'm <span class="gradient-text typed-cursor">Akash A</span></h2>
-        <div class="hero-subtitle">
-          <span class="typing-text"></span>
-          <span class="cursor-blink">|</span>
-        </div>
-        <p class="hero-description">
-          Crafting intelligent systems and contributing to open-source excellence
-        </p>
-      </div>
-      <div class="hero-btns">
-        <a href="resume.pdf" class="btn btn-primary" download>
-          <i class="fas fa-download"></i>
-          <span>Download Resume</span>
-        </a>
-        <a href="#projects" class="btn btn-secondary">
-          <i class="fas fa-rocket"></i>
-          <span>View Projects</span>
-        </a>
-        <a href="#contact" class="btn btn-outline">
-          <i class="fas fa-paper-plane"></i>
-          <span>Get In Touch</span>
-        </a>
-      </div>
-      <div class="hero-stats">
-        <div class="stat-item">
-          <span class="stat-number" data-target="10">0</span>
-          <span class="stat-label">Projects</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-number" data-target="16">0</span>
-          <span class="stat-label">Commits</span>
-        </div>
-        <div class="stat-item">
-          <span class="stat-number" data-target="10">0</span>
-          <span class="stat-label">Contributions</span>
-        </div>
+      <p class="hero-eyebrow reveal-up" id="hero-eyebrow">
+        <span class="dot"></span>Available for new opportunities
+      </p>
+      <h1 class="hero-title reveal-up" id="hero-title">
+        Crafting<br />
+        <span class="gradient-text">Intelligent</span><br />
+        Systems
+      </h1>
+      <p class="hero-sub reveal-up" id="hero-sub">
+        AI Engineer · OpenBMC Contributor · ROS2 Developer<br />
+        based in Kollam, Kerala — India
+      </p>
+      <div class="hero-cta reveal-up" id="hero-cta">
+        <a href="#projects" class="btn-primary" id="hero-btn-projects">View Work</a>
+        <a href="#contact" class="btn-ghost" id="hero-btn-contact">Get in touch</a>
       </div>
     </div>
-    <div class="scroll-indicator">
-      <div class="mouse">
-        <div class="wheel"></div>
+
+    <div class="hero-scroll" id="hero-scroll">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+
+    <div class="hero-stats" id="hero-stats">
+      <div class="hero-stat">
+        <span class="hero-stat-num" data-target="9" data-suffix=".46">—</span>
+        <span class="hero-stat-label">CGPA</span>
       </div>
-      <p>Scroll Down</p>
+      <div class="hero-stat">
+        <span class="hero-stat-num" data-target="10" data-suffix="+">0</span>
+        <span class="hero-stat-label">Projects</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-num" data-target="30" data-suffix="%">0</span>
+        <span class="hero-stat-label">Perf. Boost</span>
+      </div>
     </div>
   </section>
 
-  <!-- About Section -->
-  <section id="about" class="about section">
+  <!-- ====== ABOUT ====== -->
+  <section class="section about" id="about">
     <div class="container">
-      <div class="section-header">
-        <span class="section-number">01.</span>
-        <h2 class="section-title">About Me</h2>
-        <div class="section-line"></div>
-      </div>
-      <div class="about-content">
-        <div class="about-text">
-          <p class="highlight-text">
-            AI-focused Computer Science Engineering student with strong foundations in algorithms, system design, and
-            software engineering.
+      <div class="section-tag reveal-up">01 / About</div>
+      <div class="about-grid">
+        <div class="about-text reveal-up">
+          <h2 class="section-heading">
+            A Designer who<br />
+            <span class="gradient-text">judges a book by its cover.</span>
+          </h2>
+          <p class="about-body">
+            AI-focused Computer Science Engineering student at Amrita Vishwa Vidyapeetham with a CGPA of 9.46.
+            Strong foundations in algorithms, system design, and software engineering.
           </p>
-          <p>
-            Experienced in building end-to-end systems across machine learning, computer vision, robotics (ROS2-based
-            multi-agent systems), and deep learning pipelines deployed on mobile, web, and backend platforms.
+          <p class="about-body">
+            Experienced in building end-to-end systems across machine learning, computer vision,
+            robotics (ROS2-based multi-agent systems), and deep learning pipelines deployed on mobile,
+            web, and backend platforms.
           </p>
-          <p>
-            Proven ability to work in large codebases, solve open-ended engineering problems, and deliver scalable,
-            production-oriented solutions with measurable impact.
+          <p class="about-body">
+            Proven ability to work in large codebases, solve open-ended engineering problems,
+            and deliver scalable, production-oriented solutions with measurable impact.
           </p>
-          <div class="about-highlights">
-            <div class="highlight-item">
-              <i class="fas fa-code"></i>
-              <div>
-                <h4>Clean Code</h4>
-                <p>Writing maintainable, scalable solutions</p>
-              </div>
-            </div>
-            <div class="highlight-item">
-              <i class="fas fa-users"></i>
-              <div>
-                <h4>Collaboration</h4>
-                <p>Open-source contributor & team player</p>
-              </div>
-            </div>
-            <div class="highlight-item">
-              <i class="fas fa-lightbulb"></i>
-              <div>
-                <h4>Innovation</h4>
-                <p>Always exploring new technologies</p>
-              </div>
-            </div>
+          <div class="about-pills">
+            <span class="pill">Clean Code</span>
+            <span class="pill">Open Source</span>
+            <span class="pill">System Design</span>
+            <span class="pill">Robotics</span>
+            <span class="pill">GenAI</span>
           </div>
         </div>
-        <div class="about-visual">
-          <div class="code-window">
-            <div class="window-header">
-              <span class="dot red"></span>
-              <span class="dot yellow"></span>
-              <span class="dot green"></span>
-              <span class="window-title">akash.profile</span>
+        <div class="about-right reveal-up">
+          <div class="code-card">
+            <div class="code-card-header">
+              <span class="code-dot red"></span>
+              <span class="code-dot amber"></span>
+              <span class="code-dot green"></span>
+              <span class="code-filename">akash.config.ts</span>
             </div>
-            <div class="window-content">
-              <pre><code><span class="code-keyword">const</span> <span class="code-variable">akash</span> = {
-  <span class="code-property">role</span>: <span class="code-string">"AI Engineer"</span>,
-  <span class="code-property">location</span>: <span class="code-string">"Kollam, Kerala, India"</span>,
-  <span class="code-property">education</span>: <span class="code-string">"B.Tech CSE (AI) @ Amrita"</span>,
-  <span class="code-property">interests</span>: [
-    <span class="code-string">"Machine Learning"</span>,
-    <span class="code-string">"Systems Design"</span>,
-    <span class="code-string">"Robotics"</span>
+            <pre class="code-body"><code><span class="kw">const</span> <span class="var">akash</span> <span class="op">=</span> {
+  <span class="prop">role</span>: <span class="str">"AI Engineer"</span>,
+  <span class="prop">education</span>: <span class="str">"B.Tech CSE (AI)"</span>,
+  <span class="prop">university</span>: <span class="str">"Amrita, Kollam"</span>,
+  <span class="prop">cgpa</span>: <span class="num">9.46</span>,
+  <span class="prop">stack</span>: [
+    <span class="str">"Python"</span>, <span class="str">"C++"</span>,
+    <span class="str">"ROS2"</span>, <span class="str">"PyTorch"</span>,
+    <span class="str">"LangChain"</span>, <span class="str">"AWS"</span>
   ],
-  <span class="code-property">passion</span>: <span class="code-string">"Solving open-ended problems 🚀"</span>
+  <span class="prop">openSource</span>: [
+    <span class="str">"OpenBMC"</span>, <span class="str">"OpenCV"</span>
+  ],
+  <span class="prop">passion</span>: <span class="str">"Solving hard problems"</span>
 };</code></pre>
+          </div>
+          <div class="edu-card reveal-up">
+            <div class="edu-item">
+              <span class="edu-year">2023 – Present</span>
+              <h4>B.Tech CSE (AI) — Amrita</h4>
+              <p>CGPA: <strong>9.46</strong></p>
+            </div>
+            <div class="edu-divider"></div>
+            <div class="edu-item">
+              <span class="edu-year">2021 – 2023</span>
+              <h4>CBSE XII — TKM Centenary</h4>
+              <p><strong>94.6%</strong> · School Topper</p>
+            </div>
+            <div class="edu-divider"></div>
+            <div class="edu-item">
+              <span class="edu-year">2019 – 2021</span>
+              <h4>CBSE X — Trinity Lyceum</h4>
+              <p>School Topper</p>
             </div>
           </div>
         </div>
@@ -191,522 +177,317 @@
     </div>
   </section>
 
-  <!-- Education Section -->
-  <section id="education" class="education section">
+  <!-- ====== EXPERIENCE ====== -->
+  <section class="section experience" id="experience">
     <div class="container">
-      <div class="section-header">
-        <span class="section-number">02.</span>
-        <h2 class="section-title">Education</h2>
-        <div class="section-line"></div>
-      </div>
-      <div class="timeline">
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="timeline-content">
-            <span class="timeline-date">Sep 2023 - Present</span>
-            <h3>B.Tech in Computer Science & Engineering (AI)</h3>
-            <h4>Amrita Vishwa Vidyapeetham, Kollam</h4>
-            <p>CGPA: <strong>9.46</strong></p>
+      <div class="section-tag reveal-up">02 / Experience</div>
+      <h2 class="section-heading reveal-up">Where I've <span class="gradient-text">Worked</span></h2>
+      <div class="exp-grid">
+        <div class="exp-card reveal-up" id="exp-card-1">
+          <div class="exp-header">
+            <div>
+              <span class="exp-date">Apr 2025 – Sep 2025</span>
+              <h3 class="exp-role">GenAI Intern</h3>
+              <span class="exp-company">ZoftSolutions</span>
+            </div>
+            <span class="exp-badge">Current</span>
+          </div>
+          <ul class="exp-bullets">
+            <li>Integrated computer vision modules with generative AI pipelines improving inference efficiency.</li>
+            <li>Optimized preprocessing and inference workflows reducing end-to-end generation latency.</li>
+            <li>Achieved a <strong>30% improvement</strong> in inference speed while maintaining visual consistency.</li>
+          </ul>
+          <div class="exp-tags">
+            <span>GenAI</span><span>Computer Vision</span><span>Optimization</span><span>Python</span>
           </div>
         </div>
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="timeline-content">
-            <span class="timeline-date">2021 - 2023</span>
-            <h3>CBSE Class XII</h3>
-            <h4>TKM Centenary Public School</h4>
-            <p><strong>94.6%</strong> (School Topper)</p>
+
+        <div class="exp-card reveal-up" id="exp-card-2">
+          <div class="exp-header">
+            <div>
+              <span class="exp-date">Apr 2025</span>
+              <h3 class="exp-role">Machine Learning Intern</h3>
+              <span class="exp-company">Unified Mentor</span>
+            </div>
           </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="timeline-content">
-            <span class="timeline-date">2011 - 2021</span>
-            <h3>CBSE Class X</h3>
-            <h4>Trinity Lyceum</h4>
-            <p><strong>99.2%</strong> (School Topper)</p>
+          <ul class="exp-bullets">
+            <li>Built data preprocessing pipelines and engineered features for transaction-level fraud detection.</li>
+            <li>Trained and tuned classification models to improve precision and reliability.</li>
+            <li>Reduced <strong>false-positive rates by 14%</strong>, improving overall system robustness.</li>
+          </ul>
+          <div class="exp-tags">
+            <span>ML</span><span>Data Pipelines</span><span>Classification</span><span>Scikit-learn</span>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Experience Section -->
-  <section id="experience" class="experience section">
+  <!-- ====== PROJECTS ====== -->
+  <section class="section projects" id="projects">
     <div class="container">
-      <div class="section-header">
-        <span class="section-number">03.</span>
-        <h2 class="section-title">Experience</h2>
-        <div class="section-line"></div>
-      </div>
-      <div class="timeline">
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="timeline-content">
-            <span class="timeline-date">Apr 2025 - Sep 2025</span>
-            <h3>GenAI Intern</h3>
-            <h4>ZoftSolutions</h4>
-            <ul>
-              <li>Integrated computer vision modules with generative AI pipelines to improve inference efficiency and
-                output consistency.</li>
-              <li>Optimized preprocessing and inference workflows, reducing end-to-end generation latency.</li>
-              <li>Achieved a 30% improvement in inference speed while maintaining stable and visually consistent
-                outputs.</li>
-            </ul>
-            <div class="timeline-tags">
-              <span>GenAI</span>
-              <span>Computer Vision</span>
-              <span>Optimization</span>
-            </div>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="timeline-content">
-            <span class="timeline-date">Apr 2025</span>
-            <h3>Machine Learning Intern</h3>
-            <h4>Unified Mentor</h4>
-            <ul>
-              <li>Built data preprocessing pipelines and engineered features for transaction-level fraud detection.</li>
-              <li>Trained and tuned classification models to improve precision and reliability.</li>
-              <li>Reduced false-positive rates by 14%, improving overall system robustness.</li>
-            </ul>
-            <div class="timeline-tags">
-              <span>Machine Learning</span>
-              <span>Data Pipelines</span>
-              <span>Classification</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+      <div class="section-tag reveal-up">03 / Work</div>
+      <h2 class="section-heading reveal-up">Featured <span class="gradient-text">Projects</span></h2>
 
-  <!-- Projects Section -->
-  <section id="projects" class="projects section">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-number">04.</span>
-        <h2 class="section-title">Featured Projects</h2>
-        <div class="section-line"></div>
-      </div>
-      <div class="project-grid">
-        <div class="project-card featured">
-          <div class="project-image">
-            <img src="ros2logo.png" alt="ROS2">
-            <div class="project-overlay">
-              <a href="https://github.com/AKash-A007" class="project-link" target="_blank">
-                <i class="fas fa-external-link-alt"></i>
-              </a>
-            </div>
+      <div class="projects-list">
+
+        <!-- Project 1 -->
+        <div class="project-item reveal-up" id="proj-1">
+          <div class="project-meta">
+            <span class="project-num">01</span>
+            <span class="project-label">Robotics · AI</span>
           </div>
-          <div class="project-content">
-            <div class="project-header">
-              <span class="project-label">Featured Project</span>
+          <div class="project-body">
+            <div class="project-title-row">
+              <h3 class="project-name">ROS2 ACO-Enabled Rescue Swarm</h3>
               <div class="project-links">
-                <a href="https://github.com/AKash-A007" target="_blank" aria-label="GitHub">
+                <a href="https://github.com/AKash-A007" target="_blank" aria-label="GitHub" class="project-link-btn">
                   <i class="fab fa-github"></i>
                 </a>
               </div>
             </div>
-            <h3>ROS2 ACO-Enabled Rescue Swarm (TurtleBot)</h3>
-            <p>
+            <p class="project-desc">
               Designed a decentralized multi-robot rescue system using ROS2 and Ant Colony Optimization (ACO).
               Implemented adaptive path planning under dynamic obstacles using Python, LiDAR, and Raspberry Pi,
               achieving ~10% faster convergence.
             </p>
-            <div class="project-tech">
-              <span>ROS2</span>
-              <span>Python</span>
-              <span>LiDAR</span>
-              <span>ACO</span>
+            <div class="project-tech-row">
+              <span>ROS2</span><span>Python</span><span>LiDAR</span><span>ACO</span><span>Raspberry Pi</span>
             </div>
+          </div>
+          <div class="project-img-wrap">
+            <img src="ros2logo.png" alt="ROS2 Swarm" class="project-img" />
           </div>
         </div>
 
-        <div class="project-card featured">
-          <div class="project-image">
-            <img src="image.png" alt="NeuroTidy">
-            <div class="project-overlay">
-              <a href="https://neurotidy.com/" class="project-link" target="_blank">
-                <i class="fas fa-external-link-alt"></i>
-              </a>
-            </div>
+        <!-- Project 2 -->
+        <div class="project-item project-item--alt reveal-up" id="proj-2">
+          <div class="project-meta">
+            <span class="project-num">02</span>
+            <span class="project-label">AWS Hackathon · LLM</span>
           </div>
-          <div class="project-content">
-            <div class="project-header">
-              <span class="project-label">AWS Hackathon</span>
+          <div class="project-body">
+            <div class="project-title-row">
+              <h3 class="project-name">NeuroTidy — AI Debugging Assistant</h3>
               <div class="project-links">
-                <a href="https://neurotidy.com/" target="_blank" aria-label="Live Demo">
+                <a href="https://neurotidy.com/" target="_blank" aria-label="Live Demo" class="project-link-btn">
                   <i class="fas fa-external-link-alt"></i>
                 </a>
               </div>
             </div>
-            <h3>NeuroTidy — AI Debugging Assistant</h3>
-            <p>
-              Built an AI-powered debugging assistant that analyzes deep learning code and identifies errors in training
+            <p class="project-desc">
+              AI-powered debugging assistant that analyzes deep learning code and identifies errors in training
               pipelines, tensor shapes, and model configurations. Integrated rule-based diagnostics with LLM reasoning.
             </p>
-            <div class="project-tech">
-              <span>Python</span>
-              <span>LangChain</span>
-              <span>AWS</span>
-              <span>LLMs</span>
+            <div class="project-tech-row">
+              <span>Python</span><span>LangChain</span><span>AWS</span><span>LLMs</span>
             </div>
+          </div>
+          <div class="project-img-wrap">
+            <img src="image.png" alt="NeuroTidy" class="project-img" />
           </div>
         </div>
 
-        <div class="project-card">
-          <div class="project-image">
-            <img src="OpenBMC_logo.png" alt="VeriStoreDB">
-            <div class="project-overlay">
-              <a href="https://github.com/AKash-A007" class="project-link" target="_blank">
-                <i class="fas fa-external-link-alt"></i>
-              </a>
-            </div>
+        <!-- Project 3 -->
+        <div class="project-item reveal-up" id="proj-3">
+          <div class="project-meta">
+            <span class="project-num">03</span>
+            <span class="project-label">Systems · C++</span>
           </div>
-          <div class="project-content">
-            <div class="project-header">
+          <div class="project-body">
+            <div class="project-title-row">
+              <h3 class="project-name">VeriStoreDB — Versioned Storage DBMS</h3>
               <div class="project-links">
-                <a href="https://github.com/AKash-A007" target="_blank" aria-label="GitHub">
+                <a href="https://github.com/AKash-A007" target="_blank" aria-label="GitHub" class="project-link-btn">
                   <i class="fab fa-github"></i>
                 </a>
               </div>
             </div>
-            <h3>VeriStoreDB — Versioned Storage DBMS</h3>
-            <p>
+            <p class="project-desc">
               Designing a Git-like version-controlled storage engine supporting snapshots, branching, and rollbacks.
-              Implementing core components in C++ with focus on consistency, metadata management, and storage
-              efficiency.
+              Implementing core components in C++ with focus on consistency, metadata management, and storage efficiency.
             </p>
-            <div class="project-tech">
-              <span>C++</span>
-              <span>DBMS</span>
-              <span>Storage Systems</span>
+            <div class="project-tech-row">
+              <span>C++</span><span>DBMS</span><span>Storage Systems</span>
             </div>
+          </div>
+          <div class="project-img-wrap">
+            <img src="OpenBMC_logo.png" alt="VeriStoreDB" class="project-img" />
           </div>
         </div>
 
-        <div class="project-card">
-          <div class="project-image">
-            <img src="akash_photo_logo.jpg" alt="DreamLens">
-            <div class="project-overlay">
-              <a href="https://github.com/AKash-A007" class="project-link" target="_blank">
-                <i class="fas fa-external-link-alt"></i>
-              </a>
-            </div>
+        <!-- Project 4 -->
+        <div class="project-item project-item--alt reveal-up" id="proj-4">
+          <div class="project-meta">
+            <span class="project-num">04</span>
+            <span class="project-label">Deep Learning · Mobile</span>
           </div>
-          <div class="project-content">
-            <div class="project-header">
+          <div class="project-body">
+            <div class="project-title-row">
+              <h3 class="project-name">DreamLens — EEG to Image Generation</h3>
               <div class="project-links">
-                <a href="https://github.com/AKash-A007" target="_blank" aria-label="GitHub">
+                <a href="https://github.com/AKash-A007" target="_blank" aria-label="GitHub" class="project-link-btn">
                   <i class="fab fa-github"></i>
                 </a>
               </div>
             </div>
-            <h3>DreamLens — EEG to Image Generation</h3>
-            <p>
-              Developed a deep learning pipeline to transform EEG signals into visual representations. Deployed the
-              system using a Flask backend with a Flutter-based Android client, enabling near real-time EEG
-              visualization.
+            <p class="project-desc">
+              Deep learning pipeline to transform EEG signals into visual representations.
+              Deployed using a Flask backend with a Flutter-based Android client, enabling near real-time EEG visualization.
             </p>
-            <div class="project-tech">
-              <span>Deep Learning</span>
-              <span>Flask</span>
-              <span>Flutter</span>
+            <div class="project-tech-row">
+              <span>Deep Learning</span><span>Flask</span><span>Flutter</span><span>EEG</span>
             </div>
           </div>
+          <div class="project-img-wrap">
+            <img src="akash_photo_logo.jpg" alt="DreamLens" class="project-img" />
+          </div>
         </div>
+
       </div>
     </div>
   </section>
 
-  <!-- Skills Section -->
-  <section id="skills" class="skills section">
+  <!-- ====== SKILLS ====== -->
+  <section class="section skills" id="skills">
     <div class="container">
-      <div class="section-header">
-        <span class="section-number">05.</span>
-        <h2 class="section-title">Skills & Technologies</h2>
-        <div class="section-line"></div>
-      </div>
-      <div class="skills-grid">
-        <div class="skill-category">
-          <div class="category-icon">
-            <i class="fas fa-brain"></i>
-          </div>
-          <h3>AI & Machine Learning</h3>
-          <div class="skill-items">
-            <div class="skill-item">
-              <span>TensorFlow / PyTorch</span>
-              <div class="skill-bar">
-                <div class="skill-progress" data-progress="85"></div>
-              </div>
-            </div>
-            <div class="skill-item">
-              <span>LangChain / OpenCV</span>
-              <div class="skill-bar">
-                <div class="skill-progress" data-progress="80"></div>
-              </div>
-            </div>
-            <div class="skill-item">
-              <span>Scikit-Learn</span>
-              <div class="skill-bar">
-                <div class="skill-progress" data-progress="75"></div>
-              </div>
-            </div>
+      <div class="section-tag reveal-up">04 / Skills</div>
+      <h2 class="section-heading reveal-up">Technologies I <span class="gradient-text">Work With</span></h2>
+      <div class="skills-bento reveal-up">
+        <div class="skill-block skill-block--wide" id="skill-ai">
+          <div class="skill-block-icon"><i class="fas fa-brain"></i></div>
+          <h4>AI & Machine Learning</h4>
+          <div class="skill-tags">
+            <span>TensorFlow</span><span>PyTorch</span><span>LangChain</span>
+            <span>OpenCV</span><span>Scikit-Learn</span><span>NumPy</span>
           </div>
         </div>
-
-        <div class="skill-category">
-          <div class="category-icon">
-            <i class="fas fa-robot"></i>
-          </div>
-          <h3>Robotics</h3>
-          <div class="skill-items">
-            <div class="skill-item">
-              <span>ROS2</span>
-              <div class="skill-bar">
-                <div class="skill-progress" data-progress="90"></div>
-              </div>
-            </div>
-            <div class="skill-item">
-              <span>Gazebo</span>
-              <div class="skill-bar">
-                <div class="skill-progress" data-progress="85"></div>
-              </div>
-            </div>
-            <div class="skill-item">
-              <span>Path Planning</span>
-              <div class="skill-bar">
-                <div class="skill-progress" data-progress="80"></div>
-              </div>
-            </div>
+        <div class="skill-block" id="skill-robotics">
+          <div class="skill-block-icon"><i class="fas fa-robot"></i></div>
+          <h4>Robotics</h4>
+          <div class="skill-tags">
+            <span>ROS2</span><span>Gazebo</span><span>LiDAR</span><span>Path Planning</span>
           </div>
         </div>
-
-        <div class="skill-category">
-          <div class="category-icon">
-            <i class="fas fa-code"></i>
-          </div>
-          <h3>Programming</h3>
-          <div class="skill-items">
-            <div class="skill-item">
-              <span>Python & C++</span>
-              <div class="skill-bar">
-                <div class="skill-progress" data-progress="95"></div>
-              </div>
-            </div>
-            <div class="skill-item">
-              <span>Java</span>
-              <div class="skill-bar">
-                <div class="skill-progress" data-progress="85"></div>
-              </div>
-            </div>
-            <div class="skill-item">
-              <span>JS / HTML / CSS</span>
-              <div class="skill-bar">
-                <div class="skill-progress" data-progress="75"></div>
-              </div>
-            </div>
+        <div class="skill-block" id="skill-prog">
+          <div class="skill-block-icon"><i class="fas fa-code"></i></div>
+          <h4>Programming</h4>
+          <div class="skill-tags">
+            <span>Python</span><span>C++</span><span>Java</span><span>JS</span>
           </div>
         </div>
-
-        <div class="skill-category">
-          <div class="category-icon">
-            <i class="fas fa-server"></i>
+        <div class="skill-block" id="skill-cloud">
+          <div class="skill-block-icon"><i class="fas fa-cloud"></i></div>
+          <h4>Cloud & Tools</h4>
+          <div class="skill-tags">
+            <span>AWS</span><span>Docker</span><span>Git</span><span>Linux</span><span>Flask</span>
           </div>
-          <h3>Systems & Tools</h3>
-          <div class="skill-items">
-            <div class="skill-item">
-              <span>Git / Gerrit / Linux</span>
-              <div class="skill-bar">
-                <div class="skill-progress" data-progress="90"></div>
-              </div>
-            </div>
-            <div class="skill-item">
-              <span>Docker & Flutter</span>
-              <div class="skill-bar">
-                <div class="skill-progress" data-progress="80"></div>
-              </div>
-            </div>
-            <div class="skill-item">
-              <span>Flask</span>
-              <div class="skill-bar">
-                <div class="skill-progress" data-progress="85"></div>
-              </div>
-            </div>
-          </div>
+        </div>
+        <div class="skill-block skill-block--os" id="skill-os">
+          <div class="skill-block-icon"><i class="fas fa-microchip"></i></div>
+          <h4>Open Source</h4>
+          <p class="skill-os-desc">Merged contributions to <strong>OpenBMC</strong> and <strong>OpenCV</strong> focusing on testing, tooling, and code quality.</p>
         </div>
       </div>
-
-      <div class="skill-category">
-        <div class="category-icon">
-          <i class="fas fa-users-cog"></i>
-        </div>
-        <h3>Core Areas & Soft Skills</h3>
-        <div class="skill-items">
-          <div class="skill-item">
-            <span>System Design & DSA</span>
-            <div class="skill-bar">
-              <div class="skill-progress" data-progress="90"></div>
-            </div>
-          </div>
-          <div class="skill-item">
-            <span>Problem Solving & Ownership</span>
-            <div class="skill-bar">
-              <div class="skill-progress" data-progress="95"></div>
-            </div>
-          </div>
-          <div class="skill-item">
-            <span>Communication (Eng/Mal/Hin)</span>
-            <div class="skill-bar">
-              <div class="skill-progress" data-progress="85"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
     </div>
   </section>
 
-  <!-- Certifications & Extracurriculars Section -->
-  <section id="certifications" class="certifications section">
+  <!-- ====== CERTIFICATIONS ====== -->
+  <section class="section certs" id="certifications">
     <div class="container">
-      <div class="section-header">
-        <span class="section-number">06.</span>
-        <h2 class="section-title">Certifications & Extracurriculars</h2>
-        <div class="section-line"></div>
-      </div>
-      <div class="timeline">
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="timeline-content">
-            <span class="timeline-date">2025</span>
-            <h3>IBM Machine Learning Certification</h3>
-            <h4>IBM</h4>
-          </div>
+      <div class="section-tag reveal-up">05 / Achievements</div>
+      <h2 class="section-heading reveal-up">Certifications &amp; <span class="gradient-text">Extras</span></h2>
+      <div class="certs-grid">
+        <div class="cert-card reveal-up" id="cert-1">
+          <span class="cert-year">2025</span>
+          <h4>IBM Machine Learning</h4>
+          <p>IBM Professional Certificate</p>
         </div>
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="timeline-content">
-            <span class="timeline-date">2024</span>
-            <h3>Data Structures and Algorithms</h3>
-            <h4>Udemy</h4>
-          </div>
+        <div class="cert-card reveal-up" id="cert-2">
+          <span class="cert-year">2024</span>
+          <h4>Data Structures & Algorithms</h4>
+          <p>Udemy</p>
         </div>
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="timeline-content">
-            <span class="timeline-date">Feb 2025 - May 2025</span>
-            <h3>Workshop Coordinator — VIDYUT</h3>
-            <p>Delivered Unity Game Development workshops for 120+ participants.</p>
-          </div>
+        <div class="cert-card reveal-up" id="cert-3">
+          <span class="cert-year">2025</span>
+          <h4>Workshop Coordinator — VIDYUT</h4>
+          <p>Unity Game Development workshops for 120+ participants</p>
         </div>
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="timeline-content">
-            <span class="timeline-date">Ongoing</span>
-            <h3>Open-Source Contributor</h3>
-            <p>Merged contributions to OpenBMC and OpenCV, focusing on testing, tooling, and code quality.</p>
-          </div>
+        <div class="cert-card reveal-up" id="cert-4">
+          <span class="cert-year">Ongoing</span>
+          <h4>Open-Source Contributor</h4>
+          <p>Merged contributions to OpenBMC &amp; OpenCV</p>
         </div>
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="timeline-content">
-            <span class="timeline-date">2023 - 2024</span>
-            <h3>Event Organizer & Speaker</h3>
-            <p>Wall Painting Organizer (Amritavarsham 2023), Public Speaking (SSR 2024).</p>
-          </div>
+        <div class="cert-card reveal-up" id="cert-5">
+          <span class="cert-year">2023</span>
+          <h4>Wall Painting Organizer</h4>
+          <p>Amritavarsham 2023 — Organized campus creative events</p>
+        </div>
+        <div class="cert-card reveal-up" id="cert-6">
+          <span class="cert-year">2024</span>
+          <h4>Public Speaking</h4>
+          <p>SSR 2024 — Shared technical insight presentations</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Contact Section -->
-  <section id="contact" class="contact section">
+  <!-- ====== CONTACT ====== -->
+  <section class="section contact" id="contact">
     <div class="container">
-      <div class="section-header">
-        <span class="section-number">07.</span>
-        <h2 class="section-title">Get In Touch</h2>
-        <div class="section-line"></div>
-      </div>
-      <div class="contact-content">
-        <div class="contact-text">
-          <p class="contact-description">
-            I'm always open to discussing new projects, creative ideas, or opportunities
-            to be part of your vision. Whether you want to collaborate on open-source,
-            discuss AI/robotics, or just say hi — my inbox is always open!
-          </p>
-          <div class="contact-methods">
-            <a href="mailto:akash@example.com" class="contact-method">
-              <i class="fas fa-envelope"></i>
-              <div>
-                <h4>Email</h4>
-                <p>akash2005.work@gmail.com</p>
-              </div>
-            </a>
-            <a href="tel:+1234567890" class="contact-method">
-              <i class="fas fa-phone"></i>
-              <div>
-                <h4>Phone</h4>
-                <p>+91 7909241168</p>
-              </div>
-            </a>
-            <a href="#" class="contact-method">
-              <i class="fas fa-map-marker-alt"></i>
-              <div>
-                <h4>Location</h4>
-                <p>India</p>
-              </div>
-            </a>
-          </div>
+      <div class="contact-wrapper reveal-up">
+        <div class="section-tag">07 / Contact</div>
+        <h2 class="section-heading contact-heading">
+          Let's <span class="gradient-text">Connect</span>
+        </h2>
+        <p class="contact-body">
+          I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.
+          Whether you want to collaborate on open-source, discuss AI/robotics, or just say hi — let's talk.
+        </p>
+        <div class="contact-methods">
+          <a href="mailto:akash2005.work@gmail.com" class="contact-method-link" id="contact-email">
+            <i class="fas fa-envelope"></i>
+            <div>
+              <span class="method-label">Email</span>
+              <span class="method-value">akash2005.work@gmail.com</span>
+            </div>
+          </a>
+          <a href="https://linkedin.com/in/akash-aofficial" target="_blank" class="contact-method-link" id="contact-linkedin">
+            <i class="fab fa-linkedin-in"></i>
+            <div>
+              <span class="method-label">LinkedIn</span>
+              <span class="method-value">akash-aofficial</span>
+            </div>
+          </a>
+          <a href="https://github.com/AKash-A007" target="_blank" class="contact-method-link" id="contact-github">
+            <i class="fab fa-github"></i>
+            <div>
+              <span class="method-label">GitHub</span>
+              <span class="method-value">AKash-A007</span>
+            </div>
+          </a>
         </div>
-        <div class="contact-form-container">
-          <form class="contact-form" id="contact-form">
-            <div class="form-group">
-              <input type="text" id="name" placeholder="Your Name" required>
-              <label for="name">Name</label>
-            </div>
-            <div class="form-group">
-              <input type="email" id="email" placeholder="Your Email" required>
-              <label for="email">Email</label>
-            </div>
-            <div class="form-group">
-              <textarea id="message" rows="5" placeholder="Your Message" required></textarea>
-              <label for="message">Message</label>
-            </div>
-            <button type="submit" class="btn btn-primary btn-submit">
-              <span>Send Message</span>
-              <i class="fas fa-paper-plane"></i>
-            </button>
-          </form>
-        </div>
-      </div>
-      <div class="social-links">
-        <a href="https://github.com/AKash-A007" class="social-link" aria-label="GitHub" target="_blank">
-          <i class="fab fa-github"></i>
-        </a>
-        <a href="https://linkedin.com/in/akash-aofficial" class="social-link" aria-label="LinkedIn" target="_blank">
-          <i class="fab fa-linkedin-in"></i>
-        </a>
       </div>
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer>
-    <p>Designed & Built by <span class="gradient-text">Akash A</span></p>
-    <p class="footer-sub">© 2025 All rights reserved</p>
+  <!-- ====== FOOTER ====== -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span class="footer-brand">Akash A.</span>
+      <span class="footer-copy">© 2025 — Designed &amp; Built with ♥</span>
+      <div class="footer-socials">
+        <a href="https://github.com/AKash-A007" target="_blank" aria-label="GitHub" id="footer-github"><i class="fab fa-github"></i></a>
+        <a href="https://linkedin.com/in/akash-aofficial" target="_blank" aria-label="LinkedIn" id="footer-linkedin"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+    </div>
   </footer>
 
-  <!-- Back to Top Button -->
-  <a href="#" class="back-to-top" id="back-to-top" aria-label="Back to top">
+  <!-- Back to Top -->
+  <button class="back-top" id="back-top" aria-label="Back to top">
     <i class="fas fa-arrow-up"></i>
-  </a>
+  </button>
 
-  <!-- Scripts -->
-  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
   <script src="script.js"></script>
 </body>
-
 </html>
