@@ -1,21 +1,27 @@
 // ===== CUSTOM CURSOR =====
 const cursor = document.getElementById('cursor');
 const ring = document.getElementById('cursor-ring');
-let mx = 0, my = 0, cx = 0, cy = 0, rx = 0, ry = 0;
 
-document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+// Only run the cursor animation on devices that support hover (not touch)
+const isTouchDevice = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
 
-(function animCursor() {
-  cx += (mx - cx) * 0.18;
-  cy += (my - cy) * 0.18;
-  rx += (mx - rx) * 0.09;
-  ry += (my - ry) * 0.09;
-  cursor.style.left = cx + 'px';
-  cursor.style.top  = cy + 'px';
-  ring.style.left   = rx + 'px';
-  ring.style.top    = ry + 'px';
-  requestAnimationFrame(animCursor);
-})();
+if (!isTouchDevice) {
+  let mx = 0, my = 0, cx = 0, cy = 0, rx = 0, ry = 0;
+
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+
+  (function animCursor() {
+    cx += (mx - cx) * 0.18;
+    cy += (my - cy) * 0.18;
+    rx += (mx - rx) * 0.09;
+    ry += (my - ry) * 0.09;
+    cursor.style.left = cx + 'px';
+    cursor.style.top  = cy + 'px';
+    ring.style.left   = rx + 'px';
+    ring.style.top    = ry + 'px';
+    requestAnimationFrame(animCursor);
+  })();
+}
 
 document.querySelectorAll('a, button, .pill, .project-link-btn').forEach(el => {
   el.addEventListener('mouseenter', () => {
@@ -135,10 +141,14 @@ document.querySelectorAll('.hero-stat-num').forEach(el => counterObserver.observ
   const PARTICLE_COUNT = 320;
   const particles = [];
 
+  // Prevent touch-scroll interference with the canvas
+  canvas.style.touchAction = 'none';
+
   function resize() {
     W = canvas.width  = canvas.offsetWidth;
     H = canvas.height = canvas.offsetHeight;
-    cx_bh = W * 0.72;
+    // On mobile, centre the black hole instead of placing it right-of-centre
+    cx_bh = isTouchDevice ? W * 0.5 : W * 0.72;
     cy_bh = H * 0.5;
   }
 
@@ -362,7 +372,7 @@ document.querySelectorAll('.hero-stat-num').forEach(el => counterObserver.observ
 
   window.addEventListener('resize', () => {
     resize();
-    cx_bh = W * 0.72;
+    cx_bh = isTouchDevice ? W * 0.5 : W * 0.72;
     cy_bh = H * 0.5;
   });
 
